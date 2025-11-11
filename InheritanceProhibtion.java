@@ -6,33 +6,39 @@ public class InheritanceProhibtion {
 }
 
 class Person {
-      
+
     private String name;
- 
-    Person(String name){ 
- 
-        this.name = name;  
+
+    Person(String name) {
+
+        this.name = name;
         print();
     }
- 
-    final void print(){
-          
+
+    // final void print(){
+
+    // System.out.println("Name: " + name);
+    // }
+
+    void print() {
+
         System.out.println("Name: " + name);
     }
 }
- 
-class Employee extends Person{
- 
+
+class Employee extends Person {
+
     private String company;
- 
-    Employee(String name, String company){
- 
-        super(name); 
+
+    Employee(String name, String company) {
+
+        super(name);
         this.company = company;
     }
+
     @Override
-    void print(){
+    void print() {
         super.print();
         System.out.println("Company: " + company);
     }
-}  
+}

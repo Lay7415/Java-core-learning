@@ -1,5 +1,5 @@
-String name = "hello";
+// String name = "hello";
 
-void main(String[] args) {
-    System.out.println(name);
-}
+// void main(String[] args) {
+//     System.out.println(name);
+// // }
