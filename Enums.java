@@ -2,8 +2,10 @@ public class Enums {
     public static void main(String[] args) {
         Task task1 = new Task("buy milk", "Buy milk");
         task1.getStatus();
-        task1.setStatusInProgress();
-        task1.setStatusCompleted();
+        TaskMethodEnum taskMethodEnum = TaskMethodEnum.IN_PROGRESS;
+        taskMethodEnum.mark(task1);
+        taskMethodEnum = TaskMethodEnum.COMPLETED;
+        taskMethodEnum.mark(task1);
 
         TaskStatus[] statuses = TaskStatus.values();
 
@@ -29,6 +31,30 @@ enum TaskStatus {
         return translate;
     }
 
+}
+
+enum TaskMethodEnum {
+    NEW_TASK {
+        @Override
+        void mark(Task task) {
+            task.setStatus(TaskStatus.NEW_TASK);
+        }
+    },
+    IN_PROGRESS {
+        @Override
+        void mark(Task task) {
+            task.setStatus(TaskStatus.IN_PROGRESS);
+        }
+    },
+
+    COMPLETED {
+        @Override
+        void mark(Task task) {
+            task.setStatus(TaskStatus.COMPLETED);
+        }
+    };
+
+    abstract void mark(Task task);
 }
 
 class Task {
@@ -62,19 +88,8 @@ class Task {
         this.description = description;
     }
 
-    private void setStatus(TaskStatus status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
-    }
-
-    public void setStatusInProgress() {
-        this.setStatus(TaskStatus.IN_PROGRESS);
         System.out.println(this.title + " in status " + this.getStatus().getTranslate());
     }
-
-    public void setStatusCompleted() {
-        this.setStatus(TaskStatus.COMPLETED);
-        System.out.println(this.title + " in status " + this.getStatus().getTranslate());
-
-    }
-
 }
