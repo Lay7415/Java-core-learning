@@ -1,44 +1,69 @@
 public class Generics {
     public static void main(String[] args) {
-        Account<String> acc1 = new Account("acc123", 5000);
-        Account<String> acc2 = new Account("acc23432", 43300);
-        System.out.println(acc1.getId());
-        System.out.println(acc2.getId());
-        Account.<String>helloMessage("asdjlfaskdjf");
+        EmailMessage email = new EmailMessage("Привет, ты спишь?", "someaddress@hmail.com");
+        Messenger<EmailMessage> mailClient = new Messenger<EmailMessage>(email);
+        mailClient.send(); 
 
+        SmsMessage sms = new SmsMessage("Hello World", "+71234567890");
+        Messenger<SmsMessage> phone = new Messenger<SmsMessage>(sms);
+        phone.send();
     }
 }
 
-interface Accountable<T> {
-    T getId();
+class Message {
+    private String text;
 
-    int getSum();
+    String getText() {
+        return text;
+    }
 
-    void setSum(int sum);
+    Message(String text) {
+        this.text = text;
+    }
 }
 
-class Account<T> implements Accountable<T> {
-    private T id;
-    private int sum;
+class EmailMessage extends Message {
 
-    Account(T id, int sum) {
-        this.id = id;
-        this.sum = sum;
+    private String address;
+
+    String getAddress() {
+        return address;
     }
 
-    public T getId() {
-        return id;
+    EmailMessage(String text, String address) {
+
+        super(text);
+        this.address = address;
+    }
+}
+
+class SmsMessage extends Message {
+
+    private String number;
+
+    String getNumber() {
+        return number;
     }
 
-    public int getSum() {
-        return this.sum;
+    SmsMessage(String text, String number) {
+        super(text);
+        this.number = number;
+    }
+}
+
+class Messenger<T extends Message> {
+
+    private T message;
+
+    T getMessage() {
+        return this.message;
     }
 
-    public void setSum(int sum) {
-        this.sum = sum;
+    Messenger(T message) {
+        this.message = message;
     }
 
-    public static <O> void helloMessage(O obj) {
-        System.out.println(obj);
+    void send() {
+        System.out.println("Отправляется сообщение: " + message.getText());
     }
 }
