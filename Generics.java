@@ -4,6 +4,8 @@ public class Generics {
         Account<String> acc2 = new Account("acc23432", 43300);
         System.out.println(acc1.getId());
         System.out.println(acc2.getId());
+        Account.<String>helloMessage("asdjlfaskdjf");
+
     }
 }
 
@@ -34,5 +36,9 @@ class Account<T> implements Accountable<T> {
 
     public void setSum(int sum) {
         this.sum = sum;
+    }
+
+    public static <O> void helloMessage(O obj) {
+        System.out.println(obj);
     }
 }
