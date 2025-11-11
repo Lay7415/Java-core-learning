@@ -1,4 +1,4 @@
-public class VaribleLiveCycle {
+public class VaribleLifeCycle {
     public static void main(String[] args) {
         Person.printCount();
         Person bob = new Person("Bob");
