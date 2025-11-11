@@ -1,29 +1,38 @@
 public class Generics {
     public static void main(String[] args) {
-        Person<Integer> tom = new Person<Integer>(455, "Tom");
-        Person<String> bob = new Person<String>("h324", "Bob");
-        Integer tomId = tom.getId();
-        String bobId = bob.getId();
-        System.out.println(tomId);
-        System.out.println(bobId);
+        Account<String> acc1 = new Account("acc123", 5000);
+        Account<String> acc2 = new Account("acc23432", 43300);
+        System.out.println(acc1.getId());
+        System.out.println(acc2.getId());
     }
 }
 
-class Person<T> {
+interface Accountable<T> {
+    T getId();
+
+    int getSum();
+
+    void setSum(int sum);
+}
+
+class Account<T> implements Accountable<T> {
     private T id;
-    private String name;
+    private int sum;
 
-    T getId() {
-        return this.id;
-    }
-
-    String getName() {
-        return this.name;
-    }
-
-    Person(T id, String name){
+    Account(T id, int sum) {
         this.id = id;
-        this.name = name;
+        this.sum = sum;
+    }
+
+    public T getId() {
+        return id;
+    }
+
+    public int getSum() {
+        return this.sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
     }
 }
-
