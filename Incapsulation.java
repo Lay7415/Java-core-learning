@@ -8,10 +8,12 @@ public class Incapsulation {
 class Person {
     private String name;
     private int age;
+    private static int count;
 
     Person(String name, int age) {
         this.name = name;
         this.age = age;
+        count++;
     }
 
     void print() {
@@ -33,5 +35,9 @@ class Person {
 
     public int getAge() {
         return this.age;
+    }
+
+    public static int getCount(){
+        return count;
     }
 }
