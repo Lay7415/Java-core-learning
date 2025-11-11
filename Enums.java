@@ -4,13 +4,31 @@ public class Enums {
         task1.getStatus();
         task1.setStatusInProgress();
         task1.setStatusCompleted();
+
+        TaskStatus[] statuses = TaskStatus.values();
+
+        for (TaskStatus status : statuses) {
+            System.out.println(status.getClass());
+            System.out.println(status.ordinal());
+        }
     }
 }
 
 enum TaskStatus {
-    NEW_TASK,
-    IN_PROGRESS,
-    COMPLETED
+    NEW_TASK("Новая задача"),
+    IN_PROGRESS("В Прогрессе"),
+    COMPLETED("Завершенно");
+
+    private String translate;
+
+    TaskStatus(String translate) {
+        this.translate = translate;
+    }
+
+    public String getTranslate() {
+        return translate;
+    }
+
 }
 
 class Task {
@@ -50,12 +68,13 @@ class Task {
 
     public void setStatusInProgress() {
         this.setStatus(TaskStatus.IN_PROGRESS);
-        System.out.println(this.title + " in status " + this.getStatus());
+        System.out.println(this.title + " in status " + this.getStatus().getTranslate());
     }
 
     public void setStatusCompleted() {
         this.setStatus(TaskStatus.COMPLETED);
-        System.out.println(this.title + " in status " + this.getStatus());
+        System.out.println(this.title + " in status " + this.getStatus().getTranslate());
 
     }
+
 }
