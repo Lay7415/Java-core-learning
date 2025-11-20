@@ -1,10 +1,20 @@
 public class LambdaExpression {
     public static void main(String[] args) {
-        Operationale op;
-        op = (x, y) -> x+y;
+        Operationable op;
+        doOperation(getOperation(1), 3,4);
+    };
 
-        int result = op.execute(3,4);
-        System.out.println(result);
+    public static Operationable getOperation(int operation) {
+        switch(operation){
+            case 1: return (x, y) -> x + y; 
+            case 2: return (x, y) -> x - y; 
+            case 3: return (x, y) -> x * y; 
+            default: return (x,y) -> 0;
+        }
+    }
+
+    public static void doOperation(Operationable op, int x, int y) {
+        System.out.println(op.execute(x, y));
     }
 }
 
