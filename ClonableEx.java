@@ -20,33 +20,37 @@ public class ClonableEx {
     }
 }
 
-class Company implements Cloneable {
+class Company implements Cloneable{
+     
     String name;
-
-    public Company(String name) {
-        this.name = name;
-    }
-
-    public Company clone(){
+      
+    Company(String name){ this.name = name; }
+ 
+    public Company clone() throws CloneNotSupportedException{
+     
         return (Company) super.clone();
     }
 }
 
-class Person implements Clonable {
+class Person implements Cloneable{
+ 
     String name;
     Company company;
-
-    public Person(String name, Company company) {
-        this.name = name;
-        this.company = company
+      
+    Person(String name, Company company){ 
+ 
+        this.name = name; 
+        this.company = company;
     }
-
-
-    public Person clone() throws CloneNotSupportedException {
+ 
+    void print(){
+        System.out.printf("Person %s works in %s\n", name, company.name);
+    }
+ 
+    public Person clone() throws CloneNotSupportedException{
+       
         Person person = (Person) super.clone();
-        Person.company = (Company) company.clone();
+        person.company =(Company) company.clone();
         return person;
-    
     }
-
 }
